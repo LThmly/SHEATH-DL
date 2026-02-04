@@ -18,16 +18,16 @@ class Tensor {
 
         // Constructors
         Tensor(size_t rows, size_t cols);
-        Tensor(std::vector<float> data, size_t rows, size_t cols);
+        Tensor(const std::vector<float>& data, size_t rows, size_t cols);
 
         // Basic Info
         std::tuple<size_t, size_t> shape();
-        void display();
+        void display() const;
 
         // Operations
-        TensorPtr transpose();
+        void T(); // Transpose
         TensorPtr mult(const TensorPtr& other);
-        TensorPtr add(const TensorPtr other);
+        TensorPtr add(TensorPtr other);
 
         // Overloading
         float& operator[](size_t r, size_t c);
