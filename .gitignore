@@ -1,0 +1,59 @@
+# Build artifacts
+/build/
+/bin/
+/out/
+
+# CMake generated files
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+Makefile.cmake
+compile_commands.json
+
+# Object files and libraries
+*.o
+*.obj
+*.lo
+*.la
+*.lib
+*.a
+*.dll
+*.so
+*.dylib
+*.exe
+*.out
+*.pdb
+
+# IDE/editor settings
+.vscode/
+.idea/
+*.suo
+*.user
+*.userprefs
+*.ncb
+*.vcxproj*
+.vs/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs and temporary files
+*.log
+*.tmp
+*~
+*.swp
+
+# Secrets and environment
+.env
+*.key
+*.pem
+
+# MSYS/MinGW and temp
+/CMakeFiles/
+/CMakeScratch/
+/tmp/
+*.stackdump
+
+# /src/*.exe
