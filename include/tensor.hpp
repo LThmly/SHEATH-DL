@@ -28,6 +28,7 @@ namespace sheath {
             // Operations
             void T(); 
             std::shared_ptr<TensorHidden> mult(const std::shared_ptr<TensorHidden>& other) const;
+            std::shared_ptr<TensorHidden> add(const std::shared_ptr<TensorHidden>& other) const;
 
             // Operator Overloading
             float& operator[](size_t r, size_t c);
@@ -48,6 +49,9 @@ namespace sheath {
 
             Tensor(std::initializer_list<float> data, size_t rows, size_t cols) 
                 : internalTensor(std::make_shared<TensorHidden>(std::vector<float>(data), rows, cols)) {}
+
+            Tensor(const std::vector<float>& data, size_t rows, size_t cols) 
+                : internalTensor(std::make_shared<TensorHidden>(data, rows, cols)) {}
 
             std::tuple<size_t, size_t> shape() const {
                 return internalTensor->shape();
@@ -73,8 +77,12 @@ namespace sheath {
                 return (*internalTensor)[r, c]; 
             }
 
-            Tensor operator*(const Tensor& rhs) const {
-                return Tensor(this->internalTensor->mult(rhs.internalTensor));
+            Tensor operator*(const Tensor& other) const {
+                return Tensor(this->internalTensor->mult(other.internalTensor));
+            }
+
+            Tensor operator+(const Tensor& other) const {
+                return Tensor(this->internalTensor->add(other.internalTensor));
             }
     };
 

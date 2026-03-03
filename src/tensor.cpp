@@ -55,6 +55,7 @@ namespace sheath {
 
     // Operations
     std::shared_ptr<TensorHidden> TensorHidden::mult(const std::shared_ptr<TensorHidden>& other) const {
+
         if (cols != other->rows) {
             throw std::invalid_argument("Invalid dimensions. Cols of first matrix must equal rows of second matrix.");
         }
@@ -62,7 +63,7 @@ namespace sheath {
         auto output = std::make_shared<TensorHidden>(rows, other->cols);
         unsigned int total_size = this->size();
 
-        if (total_size < 64) {
+        if (total_size < 64 * 64) {
             // Naive Algorithm
             for (size_t i = 0; i < rows; i++) {
                 for (size_t j = 0; j < other->cols; j++) {
@@ -97,6 +98,23 @@ namespace sheath {
         }
         
         return output;
+    }
+    std::shared_ptr<TensorHidden> TensorHidden::add(const std::shared_ptr<TensorHidden>& other) const {
+        if (rows != other->rows || cols != other->cols) {
+            throw std::invalid_argument("Invalid dimensions. Matrices must have the same dimensions.");
+        }
+
+        auto output = std::make_shared<TensorHidden>(rows, cols);
+
+        for (size_t i = 0; i < rows; i++) {
+            for (size_t j = 0; j < cols; j++) {
+                (*output)[i, j] = (*this)[i, j] + (*other)[i, j];
+            }
+        }
+
+        return output;
+
+
     }
 
     // Transpose
