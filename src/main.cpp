@@ -29,7 +29,7 @@ int main() {
 
     std::cout << "Scale X" << std::endl;
     auto start = std::chrono::high_resolution_clock::now();
-    auto Z = X*3;
+    auto Z = X / 0;
     auto end = std::chrono::high_resolution_clock::now();
 
     auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);

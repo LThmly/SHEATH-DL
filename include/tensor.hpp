@@ -87,6 +87,13 @@ namespace sheath {
                 return Tensor(this->internalTensor->scale(scalar));
             }
 
+            Tensor operator/(const float scalar) const {
+                if (scalar == 0) {
+                    throw std::invalid_argument("Invalid divisor. Divisor must be nonzero.");
+                }
+                return Tensor(this->internalTensor->scale(1/scalar));
+            }
+
             Tensor operator+(const Tensor& other) const {
                 return Tensor(this->internalTensor->add(other.internalTensor));
             }
