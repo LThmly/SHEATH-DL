@@ -30,6 +30,7 @@ namespace sheath {
             std::shared_ptr<TensorHidden> mult(const std::shared_ptr<TensorHidden>& other) const;
             std::shared_ptr<TensorHidden> add(const std::shared_ptr<TensorHidden>& other) const;
             std::shared_ptr<TensorHidden> sub(const std::shared_ptr<TensorHidden> & other) const;
+            std::shared_ptr<TensorHidden> scale(const float scalar) const;
 
             // Operator Overloading
             float& operator[](size_t r, size_t c);
@@ -80,6 +81,10 @@ namespace sheath {
 
             Tensor operator*(const Tensor& other) const {
                 return Tensor(this->internalTensor->mult(other.internalTensor));
+            }
+
+            Tensor operator*(const float scalar) const {
+                return Tensor(this->internalTensor->scale(scalar));
             }
 
             Tensor operator+(const Tensor& other) const {

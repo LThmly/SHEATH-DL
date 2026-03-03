@@ -4,16 +4,22 @@
 
 int main() {
     
-    std::vector<float> dataX = {};
-    std::vector<float> dataY = {}; 
+    std::vector<float> dataXBig = {};
+    std::vector<float> dataYBig = {}; 
+
+    std::vector<float> dataX = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+    std::vector<float> dataY = {1, 2, 3, 4, 5, 6, 7, 8, 9};
 
     for (int i = 0; i < 1048576; i++) {
-        dataX.push_back(i);
-        dataY.push_back(i);
+        dataXBig.push_back(i);
+        dataYBig.push_back(i);
     }
      
-    sheath::Tensor X(dataX,1024,1024);
-    sheath::Tensor Y(dataY,1024,1024);
+    sheath::Tensor XBig(dataXBig,1024,1024);
+    sheath::Tensor YBig(dataYBig,1024,1024);
+
+    sheath::Tensor X(dataX, 3, 3);
+    sheath::Tensor Y(dataY, 3, 3);
 
     std::cout << "Tensor X" << std::endl;
     X.display();
@@ -21,9 +27,9 @@ int main() {
     std::cout << "Tensor Y" << std::endl;
     Y.display();
 
-    std::cout << "Sum" << std::endl;
+    std::cout << "Scale X" << std::endl;
     auto start = std::chrono::high_resolution_clock::now();
-    auto Z = X-Y;
+    auto Z = X*3;
     auto end = std::chrono::high_resolution_clock::now();
 
     auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);

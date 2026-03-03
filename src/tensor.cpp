@@ -127,7 +127,16 @@ namespace sheath {
         }
         return output;
     }
+    std::shared_ptr<TensorHidden> TensorHidden::scale(const float scalar) const {
+        auto output = std::make_shared<TensorHidden> (rows, cols);
 
+        for (size_t i = 0; i < rows; i++) {
+            for (size_t j = 0; j < cols; j++) {
+                (*output)[i,j] = (*this)[i,j] * scalar;
+            }
+        }
+        return output;
+    }
 
     // Transpose
     void TensorHidden::T() {
