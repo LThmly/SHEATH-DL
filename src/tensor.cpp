@@ -111,11 +111,23 @@ namespace sheath {
                 (*output)[i, j] = (*this)[i, j] + (*other)[i, j];
             }
         }
-
         return output;
-
-
     }
+    std::shared_ptr<TensorHidden> TensorHidden::sub(const std::shared_ptr<TensorHidden>& other) const {
+        if (rows != other->rows || cols != other->cols) {
+            throw std::invalid_argument("Invalid dimensions. Matrices must have the same dimensions.");
+        }
+
+        auto output = std::make_shared<TensorHidden> (rows, cols);
+
+        for (size_t i = 0; i < rows; i++) {
+            for (size_t j = 0; j < cols; j++) {
+                (*output)[i,j] = (*this)[i, j] - (*other)[i, j];
+            }
+        }
+        return output;
+    }
+
 
     // Transpose
     void TensorHidden::T() {

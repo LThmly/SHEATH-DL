@@ -23,7 +23,7 @@ int main() {
 
     std::cout << "Sum" << std::endl;
     auto start = std::chrono::high_resolution_clock::now();
-    auto Z = X+Y;
+    auto Z = X-Y;
     auto end = std::chrono::high_resolution_clock::now();
 
     auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
