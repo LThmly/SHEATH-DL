@@ -27,9 +27,9 @@ int main() {
     std::cout << "Tensor Y" << std::endl;
     Y.display();
 
-    std::cout << "Scale X" << std::endl;
+    std::cout << "Hadamard Product" << std::endl;
     auto start = std::chrono::high_resolution_clock::now();
-    auto Z = X / 0;
+    auto Z = X.hadamard(Y);
     auto end = std::chrono::high_resolution_clock::now();
 
     auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
