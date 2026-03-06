@@ -25,7 +25,7 @@ int main() {
     X.display();
 
     std::cout << "Tensor Y" << std::endl;
-    Y.display();
+    Y.T().display();
 
     std::cout << "Hadamard Product" << std::endl;
     auto start = std::chrono::high_resolution_clock::now();

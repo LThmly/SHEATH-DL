@@ -26,7 +26,7 @@ namespace myelin {
             void display() const;
 
             // Operations
-            void T(); 
+            std::shared_ptr<TensorHidden> T(); 
             std::shared_ptr<TensorHidden> mult(const std::shared_ptr<TensorHidden>& other) const;
             std::shared_ptr<TensorHidden> add(const std::shared_ptr<TensorHidden>& other) const;
             std::shared_ptr<TensorHidden> sub(const std::shared_ptr<TensorHidden>& other) const;
@@ -68,8 +68,8 @@ namespace myelin {
                 internalTensor->display(); 
             }
             
-            void T() {
-                internalTensor->T();
+            Tensor T() {
+                return internalTensor->T();
             }
 
             Tensor hadamard(const Tensor& other) const {

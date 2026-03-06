@@ -1,7 +1,6 @@
 #include "../include/tensor.hpp"
 #include <stdexcept>
 #include <string>
-#include <algorithm>
 #include <iostream>
 
 namespace myelin {
@@ -145,17 +144,15 @@ namespace myelin {
     }
 
     // Transpose
-    void TensorHidden::T() {
-        std::vector<float> newData;
-        newData.reserve(rows * cols);
+    std::shared_ptr<TensorHidden> TensorHidden::T() {
+        auto output = std::make_shared<TensorHidden> (rows, cols);
         
+        size_t idx = 0;
         for (size_t i = 0; i < cols; i++) {
             for (size_t j = i; j < rows * cols; j += cols) {
-                newData.push_back(data[j]);
+                output->data[idx++] = this->data[j];
             }
         }
-        
-        data = std::move(newData);
-        std::swap(rows, cols);
+        return output;
     }
 }
