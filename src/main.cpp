@@ -15,11 +15,11 @@ int main() {
         dataYBig.push_back(i);
     }
      
-    sheath::Tensor XBig(dataXBig,1024,1024);
-    sheath::Tensor YBig(dataYBig,1024,1024);
+    myelin::Tensor XBig(dataXBig,1024,1024);
+    myelin::Tensor YBig(dataYBig,1024,1024);
 
-    sheath::Tensor X(dataX, 3, 3);
-    sheath::Tensor Y(dataY, 3, 3);
+    myelin::Tensor X(dataX, 3, 3);
+    myelin::Tensor Y(dataY, 3, 3);
 
     std::cout << "Tensor X" << std::endl;
     X.display();

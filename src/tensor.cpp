@@ -4,7 +4,7 @@
 #include <algorithm>
 #include <iostream>
 
-namespace sheath {
+namespace myelin {
     
     // Zero Tensor
     TensorHidden::TensorHidden(const size_t rows, const size_t cols) : rows(rows), cols(cols) {

@@ -5,7 +5,7 @@
 #include <tuple>
 #include <initializer_list>
 
-namespace sheath {
+namespace myelin {
 
     // Hidden Tensor Class
     class TensorHidden {
