@@ -1,4 +1,5 @@
-﻿# SHEATH-DL (Under Construction)
+﻿# MYELIN (Under Construction)
 
 Deep Learning Library for C++
+
 
