@@ -106,10 +106,8 @@ namespace sheath {
 
         auto output = std::make_shared<TensorHidden>(rows, cols);
 
-        for (size_t i = 0; i < rows; i++) {
-            for (size_t j = 0; j < cols; j++) {
-                (*output)[i, j] = (*this)[i, j] + (*other)[i, j];
-            }
+        for (size_t i = 0; i < data.size(); i++) {
+            output->data[i] = this->data[i] + other->data[i];
         }
         return output;
     }
@@ -120,30 +118,28 @@ namespace sheath {
 
         auto output = std::make_shared<TensorHidden> (rows, cols);
 
-        for (size_t i = 0; i < rows; i++) {
-            for (size_t j = 0; j < cols; j++) {
-                (*output)[i,j] = (*this)[i, j] - (*other)[i, j];
-            }
+        for (size_t i = 0; i < data.size(); i++) {
+            output->data[i] = this->data[i] - other->data[i];
         }
         return output;
     }
     std::shared_ptr<TensorHidden> TensorHidden::scale(const float scalar) const {
         auto output = std::make_shared<TensorHidden> (rows, cols);
 
-        for (size_t i = 0; i < rows; i++) {
-            for (size_t j = 0; j < cols; j++) {
-                (*output)[i,j] = (*this)[i,j] * scalar;
-            }
+        for (size_t i = 0; i < data.size(); i++) {
+            output->data[i] = this->data[i] * scalar;
         }
         return output;
     }
     std::shared_ptr<TensorHidden> TensorHidden::hadamard(const std::shared_ptr<TensorHidden>& other) const {
+        if (rows != other->rows || cols != other->cols) {
+            throw std::invalid_argument("Invalid dimensions. Matrices must have the same dimensions.");
+        }
+        
         auto output = std::make_shared<TensorHidden> (rows, cols);
 
-        for (size_t i = 0; i < rows; i++) {
-            for (size_t j = 0; j < cols; j++) {
-                (*output)[i,j] = (*this)[i,j] * (*other)[i,j];
-            }
+        for (size_t i = 0; i < data.size(); i++) {
+            output->data[i] = this->data[i] * other->data[i];
         }
         return output;
     }
